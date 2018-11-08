@@ -108,6 +108,7 @@ public abstract class DefaultAbsSender extends AbsSender {
 
     // Send Requests
 
+    @Override
     public final java.io.File downloadFile(String filePath) throws TelegramApiException {
         if(filePath == null || filePath.isEmpty()){
             throw new TelegramApiException("Parameter file can not be null");
@@ -117,6 +118,7 @@ public abstract class DefaultAbsSender extends AbsSender {
         return downloadToTemporaryFileWrappingExceptions(url, tempFileName);
     }
 
+    @Override
     public final java.io.File downloadFile(File file) throws TelegramApiException {
         assertParamNotNull(file, "file");
         String url = file.getFileUrl(getBotToken());
@@ -124,6 +126,7 @@ public abstract class DefaultAbsSender extends AbsSender {
         return downloadToTemporaryFileWrappingExceptions(url, tempFileName);
     }
 
+    @Override
     public final void downloadFileAsync(String filePath, DownloadFileCallback<String> callback) throws TelegramApiException {
         if(filePath == null || filePath.isEmpty()){
             throw new TelegramApiException("Parameter filePath can not be null");
@@ -134,6 +137,7 @@ public abstract class DefaultAbsSender extends AbsSender {
         exe.submit(getDownloadFileAsyncJob(filePath, callback, url, tempFileName));
     }
 
+    @Override
     public final void downloadFileAsync(File file, DownloadFileCallback<File> callback) throws TelegramApiException {
         assertParamNotNull(file, "file");
         assertParamNotNull(callback, "callback");

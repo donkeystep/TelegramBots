@@ -14,6 +14,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.WebhookInfo;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.updateshandlers.DownloadFileCallback;
 import org.telegram.telegrambots.meta.updateshandlers.SentCallback;
 
 import java.io.Serializable;
@@ -74,6 +75,14 @@ public abstract class AbsSender {
         }
         sendApiMethodAsync(new GetWebhookInfo(), sentCallback);
     }
+
+    public abstract java.io.File downloadFile(String filePath) throws TelegramApiException;
+
+    public abstract java.io.File downloadFile(File file) throws TelegramApiException;
+
+    public abstract void downloadFileAsync(String filePath, DownloadFileCallback<String> callback) throws TelegramApiException;
+
+    public abstract void downloadFileAsync(File file, DownloadFileCallback<File> callback) throws TelegramApiException;
 
     // Specific Send Requests
     public abstract Message execute(SendDocument sendDocument) throws TelegramApiException;
